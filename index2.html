@@ -12,7 +12,7 @@
         要一开始就设定好宽高数值，等于屏幕宽高，如何获取呢，用js console.log(document.body.clientWidth)
         就可以在页面获取屏幕的宽高数值 -->
     <script>
-      var canvas = document.getElementById("canvas");
+      let canvas = document.getElementById("canvas");
       //   let documentWidth = document.body.clientWidth;
       //   let documentHeight = document.body.clientHeight;
       //   canvas.width = documentWidth;
@@ -23,16 +23,33 @@
       //   文档中获取的高度，不然用body的话，高度等于内容+边框的高度
       //画线
 
-      var ctx = canvas.getContext("2d");
+      let ctx = canvas.getContext("2d");
 
-      ctx.fillStyle = "blue";
-      //   这是控制里面的颜色
-      canvas.onclick = (e) => {
-        console.log(e.clientX);
-        console.log(e.clientY);
-        ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10);
-        // rect是矩形的意思；第一个是往右挪到，说明这是起始横坐标
-        // 第二个是起始的纵坐标，往下挪动了；第三个是宽度；第四个是高度
+      let painting = false;
+
+      ctx.fillStyle = "black";
+      ctx.strokeStyle = "none";
+      //   这是控制里面的颜色,stroke是边框为无的意思
+      canvas.onmousedown = () => {
+        painting = true;
+      };
+      canvas.onmousemove = (e) => {
+        if (painting === true) {
+          // console.log(e.clientX);
+          // console.log(e.clientY);
+          // ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10);
+          // rect是矩形的意思；第一个是往右挪到，说明这是起始横坐标
+          // 第二个是起始的纵坐标，往下挪动了；第三个是宽度；第四个是高度
+          ctx.beginPath();
+          ctx.arc(e.clientX, e.clientY, 10, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.fill();
+        } else {
+          console.log("什么都不做");
+        }
+      };
+      canvas.onmouseup = () => {
+        painting = false;
       };
     </script>
   </body>
