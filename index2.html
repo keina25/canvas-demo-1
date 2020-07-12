@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>画板2</title>
+    <link rel="stylesheet" href="style2.css" />
+  </head>
+  <body>
+    <canvas id="canvas" width="100" height="100"></canvas>
+    <!-- 因为canvas不一样，不能说这里设定一个宽高，会被后面style的宽高所覆盖，
+        要一开始就设定好宽高数值，等于屏幕宽高，如何获取呢，用js console.log(document.body.clientWidth)
+        就可以在页面获取屏幕的宽高数值 -->
+    <script>
+      var canvas = document.getElementById("canvas");
+      //   let documentWidth = document.body.clientWidth;
+      //   let documentHeight = document.body.clientHeight;
+      //   canvas.width = documentWidth;
+      //   canvas.height = documentHeight;
+      canvas.width = document.documentElement.clientWidth;
+      canvas.height = document.documentElement.clientHeight;
+      //   让屏幕的可见宽度等于宽度，让屏幕可见区域高度等于高度;可以简写成在这样;这里body改成documentElement是
+      //   文档中获取的高度，不然用body的话，高度等于内容+边框的高度
+      //画线
+
+      var ctx = canvas.getContext("2d");
+
+      ctx.fillStyle = "blue";
+      //   这是控制里面的颜色
+      canvas.onclick = (e) => {
+        console.log(e.clientX);
+        console.log(e.clientY);
+        ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10);
+        // rect是矩形的意思；第一个是往右挪到，说明这是起始横坐标
+        // 第二个是起始的纵坐标，往下挪动了；第三个是宽度；第四个是高度
+      };
+    </script>
+  </body>
+</html>

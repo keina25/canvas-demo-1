@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#canvas {
+  border: 1px solid red;
+  display: block;
+}
+/* 100vw就是跟屏幕一样的宽，100vh是跟屏幕一样的高 */
+/* 一般都是style的宽高可以覆盖html的宽高；但canvas的宽高会在原基础上html上，在style添加数值上拉伸，
+使得整个图形变得很模糊 */
