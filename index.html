@@ -4,8 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>画板</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    hi
+    <div id="canvas"></div>
+    <script>
+      canvas.onclick = (e) => {
+        console.log(e.clientX);
+        console.log(e.clientY);
+        //console.log调试大法 在网页控制台找出XY后，点击左上角，坐标将近0，
+        //所以含有XY的函数都可以，但是不确定哪个，可以一个个试过后，再去更改
+        let div = document.createElement("div");
+        // 上面代码意思是让文档创建一个标签/元素
+        div.style.position = "absolute";
+        //让这个div的元素绝对定位到XY上
+        div.style.left = e.clientX + "px";
+        div.style.top = e.clientY + "px";
+        // div.style.border = "1px solid red";
+        div.style.width = "6px";
+        div.style.height = "6px";
+        // 这里方块会出现在点击后鼠标的右下方，又不对称，所以改成6px
+        div.style.marginLeft = "-3px";
+        div.style.marginTop = "-3px";
+        // 这样方块就会出现在鼠标正中央
+        div.style.borderRadius = "50%";
+        // 这可以放点击后出现的方块变成圆形
+        div.style.backgroundColor = "black";
+        // 这可以让圆球变成实心后删掉上面border，就变成黑点
+        canvas.appendChild(div);
+        // 没有这句话，div在默认内存里面，加上这句，就让div出现canvas里面
+        // 这句话意思“让canvas添加一个孩子div”
+      };
+    </script>
+    <!-- 这样就可以监听当用户在页面点到哪个位置的时候，可以根据坐标来监听到具体位置 -->
   </body>
 </html>

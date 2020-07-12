@@ -1,0 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#canvas {
+  height: 100vh;
+  border: 1px solid red;
+}
+/* 这里不写宽（width）是因为默认跟屏幕一样的宽，100vh是跟屏幕一样的高 */
